@@ -1,24 +1,62 @@
 package com.example.project;
 
-public class User{
-    //requires 3 private attributes String name, String Id, Book book that is initialized to empty
+public class User {
+    private String name;
+    private String id;
+    private Book[] books = new Book[5];
 
-    //requires 1 contructor with two parameters that will initialize the name and id
+    public User(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
  
-    // public  getName() {}
+    // Returns the name of the user
+    public String getName() {
+        return this.name;
+    }
 
-    // public  setName() {}
+    // Sets the name of the user to a specified String
+    public void setName(String newName) {
+        this.name = newName;
+    }
 
-    // public  getId() {}
+    // Returns the ID of the user
+    public String getId() {
+        return this.id;
+    }
 
-    // public void setId() {}
+    // Sets the ID of the user to a specified String
+    public void setId(String newId) {
+        this.id = newId;
+    }
 
-    // public getBooks() {}
+    // Returns the books held by this user
+    public Book[] getBooks() {
+        return this.books;
+    }
 
-    // public setBooks() {}
+    // Sets the books held by this user to a new array of books
+    public void setBooks(Book[] newBooks) {
+        this.books = newBooks;
+    }
 
-    // public String bookListInfo(){} //returns a booklist for the user, if empty, output "empty"
+    // Returns a String containing info about each of the books held
+    // by the user. Any empty spaces with no book are marked as "empty"
+    public String bookListInfo() {
+        String info = "Books: \n";
+        for (Book book : books) {
+            if (book == null) { 
+                info += "empty\n";
+                continue;
+            }
+            info += book.bookInfo() + "\n";
+        }
+        return info;
+    }
 
-    // public String userInfo(){} //returns  "Name: []\nID: []\nBooks:\n[]"
-       
+    // Returns a String containing information about the user, including
+    // name, ID, and information about the books held.
+    public String userInfo() {
+        return "Name: " + this.name + "\nId: " + this.id + "\n" + this.bookListInfo();
+    }
 }
